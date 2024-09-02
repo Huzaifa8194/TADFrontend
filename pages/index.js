@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
 import { useMetamask, useWalletConnect, useAddress, useNetwork, useSigner } from "@thirdweb-dev/react";
 
-const TADContractAddress = "0xc251790275819b5e0D454611F410A90Dd58bD9eD";
+const TADContractAddress = "0x895BCcff8Ab6eb9Cc582d622E314628fFC89EdF9";
 const USDCContractAddress = "0x41E94Eb019C0762f9Bfcf9Fb1E58725BfB0e7582";
 
 
@@ -128,19 +128,25 @@ export default function Home() {
     if (TADContract && USDCContract) {
       setIsLoading(true);
       try {
-        const approvalSuccess = await approveUSDC();
+        // const approvalSuccess = await approveUSDC();
 
-        if (!approvalSuccess) {
-          toast.error("USDC approval failed, cannot proceed with minting.");
-          return;
-        }
+        // if (!approvalSuccess) {
+        //   toast.error("USDC approval failed, cannot proceed with minting.");
+        //   return;
+        // }
 
         const currentusdcBalance = await USDCContract.balanceOf(address);
         const usdcDecimals = await USDCContract.decimals();
         const amount = ethers.utils.parseUnits(usdcAmount, usdcDecimals); // Correct usage of parseUnits
 
+
+        
+
         if (currentusdcBalance.gte(amount)) { // Use gte to compare BigNumber values
+         
           const tx = await TADContract.mint(amount);
+          toast.success("THIS PART HAS BEEN DONE");
+         
           await tx.wait();
           toast.success("TAD minted successfully!");
           updateBalances();
@@ -148,8 +154,8 @@ export default function Home() {
           toast.error("Insufficient USDC balance!");
         }
       } catch (error) {
-        toast.error("Failed to mint TAD. Check console for details.");
-        console.error(error);
+        toast.error("Failed to mint TAD. Check console for details." + error);
+        console.error("MINTTAD FAILURE",error);
       } finally {
         setIsLoading(false);
       }
@@ -221,6 +227,7 @@ export default function Home() {
        
         {!address ? (
            <div>
+            <p style={{color: 'red'}}>Make sure Polygon is selected as your network.</p>
            <button className={styles.button} onClick={() => connectWallet({ walletoption: "Metamask" })}>
              Connect With Metamask
            </button>
@@ -293,8 +300,8 @@ export default function Home() {
       >
         <h2>Confirm Transaction</h2>
         <p>Are you sure you want to {modalAction} for {usdcAmount} USDC?</p>
-        <button onClick={confirmTransaction}>Confirm</button>
-        <button onClick={() => setModalIsOpen(false)}>Cancel</button>
+        <button className={styles.button} onClick={confirmTransaction}>Confirm</button>
+        <button className={styles.button} onClick={() => setModalIsOpen(false)}>Cancel</button>
       </Modal>
     </>
   );
