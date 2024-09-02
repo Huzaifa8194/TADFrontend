@@ -107,6 +107,7 @@ export default function Home() {
 
   const approveUSDC = async () => {
     if (USDCContract) {
+      setIsLoading(true);
       try {
         toast.success("Approving USDC...");
         const usdcDecimals = await USDCContract.decimals();
@@ -120,6 +121,9 @@ export default function Home() {
         console.error(error);
         return false;
       }
+      finally {
+        setIsLoading(false);
+      }
     }
     return false;
   };
@@ -128,12 +132,12 @@ export default function Home() {
     if (TADContract && USDCContract) {
       setIsLoading(true);
       try {
-        // const approvalSuccess = await approveUSDC();
+        const approvalSuccess = await approveUSDC();
 
-        // if (!approvalSuccess) {
-        //   toast.error("USDC approval failed, cannot proceed with minting.");
-        //   return;
-        // }
+        if (!approvalSuccess) {
+          toast.error("USDC approval failed, cannot proceed with minting.");
+          return;
+        }
 
         const currentusdcBalance = await USDCContract.balanceOf(address);
         const usdcDecimals = await USDCContract.decimals();
