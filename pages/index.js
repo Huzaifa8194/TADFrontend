@@ -3,17 +3,21 @@ import Banner from "@/components/Banner/Banner";
 import Sales from "@/components/Sales/Sales";
 import WhitePaper from "@/components/WhitePaper/WhitePaper";
 import LayoutOne from "@/layouts/LayoutOne";
-import { useState, useEffect  } from "react";
+import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
-import { useMetamask, useWalletConnect, useAddress, useNetwork, useSigner } from "@thirdweb-dev/react";
+import {
+  useMetamask,
+  useWalletConnect,
+  useAddress,
+  useNetwork,
+  useSigner,
+} from "@thirdweb-dev/react";
 
 const TADContractAddress = "0x895BCcff8Ab6eb9Cc582d622E314628fFC89EdF9";
 const USDCContractAddress = "0x41E94Eb019C0762f9Bfcf9Fb1E58725BfB0e7582";
-
-
 
 import styles from "./App.module.css";
 
@@ -49,8 +53,6 @@ export default function Home() {
   const address = useAddress();
   const signer = useSigner();
 
- 
-
   useEffect(() => {
     if (address) {
       updateBalances();
@@ -78,8 +80,16 @@ export default function Home() {
       try {
         const provider = signer.provider; // Get the provider from the signer
 
-        const tadContract = new ethers.Contract(TADContractAddress, TADAbi, signer);
-        const usdcContract = new ethers.Contract(USDCContractAddress, USDCAbi, signer);
+        const tadContract = new ethers.Contract(
+          TADContractAddress,
+          TADAbi,
+          signer
+        );
+        const usdcContract = new ethers.Contract(
+          USDCContractAddress,
+          USDCAbi,
+          signer
+        );
 
         setTADContract(tadContract);
         setUSDCContract(usdcContract);
@@ -103,7 +113,9 @@ export default function Home() {
         toast.success("Balances updated successfully!");
       } catch (error) {
         console.error("Failed to update balances:", error);
-        toast.error(`Failed to update balances. Check console for details. Error: ${error.message}`);
+        toast.error(
+          `Failed to update balances. Check console for details. Error: ${error.message}`
+        );
       }
     } else {
       console.error("Address not defined");
@@ -125,8 +137,7 @@ export default function Home() {
         toast.error("Failed to approve USDC. Check console for details.");
         console.error(error);
         return false;
-      }
-      finally {
+      } finally {
         setIsLoading(false);
       }
     }
@@ -148,29 +159,28 @@ export default function Home() {
         const usdcDecimals = await USDCContract.decimals();
         const amount = ethers.utils.parseUnits(usdcAmount, usdcDecimals); // Correct usage of parseUnits
 
+        if (currentusdcBalance.gte(amount)) {
+          // Use gte to compare BigNumber values
 
-        
-
-        if (currentusdcBalance.gte(amount)) { // Use gte to compare BigNumber values
-         
           const tx = await TADContract.mint(amount);
           toast.success("THIS PART HAS BEEN DONE");
-         
+
           await tx.wait();
           toast.success("TAD minted successfully!");
 
-
           setUsdcUsed((prev) => prev + parseFloat(usdcAmount));
-          setLogs((prevLogs) => [...prevLogs, `${usdcAmount} USDC used to mint TAD`]);
+          setLogs((prevLogs) => [
+            ...prevLogs,
+            `${usdcAmount} USDC used to mint TAD`,
+          ]);
 
           updateBalances();
-
         } else {
           toast.error("Insufficient USDC balance!");
         }
       } catch (error) {
         toast.error("Failed to mint TAD. Check console for details." + error);
-        console.error("MINTTAD FAILURE",error);
+        console.error("MINTTAD FAILURE", error);
       } finally {
         setIsLoading(false);
       }
@@ -182,13 +192,13 @@ export default function Home() {
       setIsLoading(true);
       try {
         const usdcDecimals = await USDCContract.decimals();
-        const amount = ethers.parseUnits(usdcAmount, usdcDecimals);
+        const amount = ethers.utils.parseUnits(usdcAmount, usdcDecimals);
         const tx = await TADContract.sell(amount);
         await tx.wait();
         toast.success("TAD sold successfully!");
         updateBalances();
       } catch (error) {
-        toast.error("Failed to sell TAD.");
+        toast.error("Failed to sell TAD. Check your TAD balance.");
         console.log(error);
       } finally {
         setIsLoading(false);
@@ -197,7 +207,7 @@ export default function Home() {
   };
 
   const validateAndProceed = (action) => {
-    if (action === "mintTAD" || action === "sellTAD") {
+    if (action === "mint TAD" || action === "sell TAD") {
       if (parseFloat(usdcAmount) > 0) {
         setModalAction(action);
         setModalIsOpen(true);
@@ -209,10 +219,10 @@ export default function Home() {
 
   const confirmTransaction = () => {
     switch (modalAction) {
-      case "mintTAD":
+      case "mint TAD":
         mintTAD();
         break;
-      case "sellTAD":
+      case "sell TAD":
         sellTAD();
         break;
       default:
@@ -221,10 +231,7 @@ export default function Home() {
     setModalIsOpen(false);
   };
 
-
-
-
-  return  (
+  return (
     <>
       <Head>
         <title>TAD Minting & Selling</title>
@@ -235,75 +242,147 @@ export default function Home() {
         <main className="fix">
           <Banner />
 
-          <div className={styles.container} id ="minting">
-
-
-
-
-              {!address ? (<></>
-              
-              
-              )
-            :
-              ( <div className={styles.sidebar}>
+          <div className={styles.container} id="minting">
+            {!address ? (
+              <></>
+            ) : (
+              <div className={styles.sidebar}>
                 <div className={styles.sidebarItem}>
-                <h4>USDC Balance</h4>
-                <p>{usdcBalance} USDC</p>
-                  <h4>USDC Used</h4>
-                  <p>{usdcUsed} USDC</p>
+                  <p>USDC Balance</p>
+                  <h4>{usdcBalance} USDC</h4>
+                  <p>USDC Used</p>
+                  <h4>{usdcUsed} USDC</h4>
                 </div>
                 <div className={styles.sidebarItem}>
-                  <h4>TAD Balance:</h4>
-                  <p>{tadBalance} TAD</p>
+                  <p>TAD Balance:</p>
+                  <h4>{tadBalance} TAD</h4>
                 </div>
-              </div>)
-            
-            }
-           
-       
+              </div>
+            )}
 
+            <div className={styles.appContent}>
+              {!address ? (
+                <div className = {styles.buttonholder}>
+                  <img
+                    src="\img\icon\polygon.png"
+                    alt="Polygon Logo"
+                    style={{ width: "60px", height: "auto", margin: "0px" }}
+                  />
+                  <p
+                    style={{
+                      color: "red",
+                      textDecoration: "underline",
+                      fontSize: "16px",
+                    }}
+                  >
+                    Make sure Polygon is selected as your network.
+                  </p>
+                  <button
+                    className="btn"
+                    style={{
+                      marginBottom: "5px",
+                      position: "relative",
+                      width: "80%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      textAlign: "center",
+                    }}
+                    onClick={() => connectWallet({ walletoption: "Metamask" })}
+                  >
+                    <span
+                      style={{
+                        flexGrow: 1,
+                       
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      Connect With MetaMask
+                    </span>
+                    <img
+                      src="/img/icon/metamask.png"
+                      alt="MetaMask Logo"
+                      style={{
+                        width: "20px",
+                        height: "20px",
+                        marginLeft: "0px",
+                      }}
+                    />
+                  </button>
 
-      <div className={styles.appContent}>
-       
-        {!address ? (
-           <div >
-            <img src ="\img\icon\polygon.png" alt="Polygon Logo" style={{ width: '60px', height: 'auto', margin: '0px' }} />
-            <p style={{color: 'red', textDecoration: 'underline', fontSize: '16px'}}>Make sure Polygon is selected as your network.</p>
-            <button className="btn" style={{ marginBottom: '5px', position: 'relative', width: '80%', textAlign: 'center' }} onClick={() => connectWallet({ walletoption: "Metamask" })}>
-  Connect With MetaMask
-  <img src="/img/icon/metamask.png" alt="MetaMask Logo" style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', width: '20px', height: '20px', marginRight: '30px'  }} />
-</button>
-
-<button className="btn" style={{ position: 'relative', width: '90%', textAlign: 'center' }} onClick={() => connectWallet({ walletoption: "Walletconnect" })}>
-  Connect With WalletConnect
-  <img src="/img/icon/walletconnect.png" alt="WalletConnect Logo" style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', width: '30px', height: '30px', marginRight: '20px' }} />
-</button>
-
-         </div>
-        ) : (
-
-
-          
-          <div>
-            <p className={styles.paragraph}>Connected Address: {address}</p>
-            {/* <p className={styles.paragraph}>USDC Balance: {usdcBalance}</p>
+                  <button
+                    className="btn"
+                    style={{
+                      position: "relative",
+                      width: "90%",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      textAlign: "center",
+                    }}
+                    onClick={() =>
+                      connectWallet({ walletoption: "Walletconnect" })
+                    }
+                  >
+                    <span
+                      style={{
+                        flexGrow: 1,
+                        textAlign: "center",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
+                    >
+                      Connect With WalletConnect
+                    </span>
+                    <img
+                      src="/img/icon/walletconnect.png"
+                      alt="WalletConnect Logo"
+                      style={{
+                        width: "30px",
+                        height: "30px",
+                        marginLeft: "0px",
+                      }}
+                    />
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <p className={styles.paragraph}>
+                    Connected Address: {address}
+                  </p>
+                  {/* <p className={styles.paragraph}>USDC Balance: {usdcBalance}</p>
             <p className={styles.paragraph}>TAD Balance: {tadBalance}</p> */}
-          
-            <input
-              className={styles.input}
-              type="number"
-              value={usdcAmount}
-              onChange={(e) => setUsdcAmount(e.target.value)}
-              placeholder="USDC Amount"
-            />
-            {/* <button className="btn" onClick={approveUSDC}>Approve USDC</button> */}
-            <button className="btn" onClick={() => validateAndProceed("mintTAD")}>Mint TAD</button>
-            <button className="btn" onClick={() => validateAndProceed("sellTAD")}>Sell TAD</button>
+
+                  <input
+                    className={styles.input}
+                    type="number"
+                    value={usdcAmount}
+                    onChange={(e) => setUsdcAmount(e.target.value)}
+                    placeholder="USDC Amount"
+                  />
+                  {/* <button className="btn" onClick={approveUSDC}>Approve USDC</button> */}
+                  <button
+                    className="btn"
+                    onClick={() => validateAndProceed("mint TAD")}
+                  >
+                    Mint TAD
+                  </button>
+                  <button
+                    className="btn"
+                    onClick={() => validateAndProceed("sell TAD")}
+                  >
+                    Sell TAD
+                  </button>
+                </div>
+              )}
+              {isLoading && (
+                <p className={styles.loading}>TRANSACTION IN PROCESS...</p>
+              )}
+            </div>
           </div>
-        )}
-        {isLoading && <p className={styles.loading}>TRANSACTION IN PROCESS...</p>}
-      </div>
-    </div>
 
           <Sales />
 
@@ -337,23 +416,42 @@ export default function Home() {
             bottom: "auto",
             marginRight: "-50%",
             transform: "translate(-50%, -50%)",
-            backgroundColor: "#fff",
+            backgroundColor: "#592F16",
             zIndex: 1001, // Ensure the modal content is above the overlay
             padding: "20px",
             borderRadius: "8px",
             maxWidth: "500px",
             width: "90%",
-            color: 'black'
+            color: "white",
+            border: "solid 1px #BF814B",
           },
         }}
-
-
       >
-        <h2 style ={{color: 'black', textAlign: 'center'}}>Confirm Transaction</h2>
-        <p style ={{color: 'black'}}>Are you sure you want to {modalAction} for {usdcAmount} USDC?</p>
-        <div style ={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
-          <button className={styles.button} onClick={confirmTransaction}>Confirm</button>
-          <button className={styles.button2} style={{borderRadius: '30px', background: 'white', color: 'black'}} onClick={() => setModalIsOpen(false)}>Cancel</button>
+        <h2 style={{ color: "white", textAlign: "center" }}>
+          Confirm Transaction
+        </h2>
+        <p style={{ color: "white",  textAlign: "center" }}>
+          Are you sure you want to {modalAction} for {usdcAmount} USDC?
+        </p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "20px",
+          }}
+        >
+          <button className={styles.button} onClick={confirmTransaction}>
+            Confirm
+          </button>
+          <button
+            className={styles.button2}
+            style={{
+              
+            }}
+            onClick={() => setModalIsOpen(false)}
+          >
+            Cancel
+          </button>
         </div>
       </Modal>
     </>

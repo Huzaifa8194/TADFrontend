@@ -21,14 +21,14 @@ const FooterOne = () => {
           </div>
           <div className="footer-top">
             <div className="row">
-              <div className="col-xl-3 col-lg-4 col-md-6">
+              <div className="col-xl-3 col-lg-4 col-md-6" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
                 <div className="footer-widget wow fadeInUp" data-wow-delay=".2s">
                   <Link href="/" className="f-logo">
                     <img src={"/img/logo/logo.png"} alt="Logo" />
                   </Link>
                   <div className="footer-content">
                     <p>The Architectures Dream Token!</p>
-                    <ul className="footer-social">
+                    <ul className="footer-social" style={{marginLeft: '50%', marginRight: '50%'}}>
                       <li>
                         <a href="#">
                           <i className="fab fa-twitter"></i>

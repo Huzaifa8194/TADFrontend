@@ -83,7 +83,7 @@ const HeaderOne = () => {
     <header
       id="header"
       style={{
-        background: "linear-gradient(179.43deg, rgba(0, 0, 0, 0) 50%, rgb(191,129, 75)  100.43%)",
+        background: "linear-gradient(360deg, rgba(0, 0, 0, 0) 40%, rgb(191,129, 75)  100.43%)",
         position: "absolute", // Make the header overlay the content
         width: "100%",
         zIndex: 100, // Ensure it's above other content
@@ -215,7 +215,7 @@ const HeaderOne = () => {
                   <div className={"nav-logo"}>
                     <Link href="/">
                       <img
-                        src={"/img/logo/logo-no-text.png"}
+                        src={"/img/logo/logo.png"}
                         alt=" Logo"
                         title=""
                       />
@@ -229,17 +229,17 @@ const HeaderOne = () => {
                   <div className={"social-links"}>
                     <ul className="clearfix">
                       <li>
-                        <a href="#">
+                        <a href="#" style={{border: '2px solid white'}}>
                           <i className="fab fa-facebook-f"></i>
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="#" style={{border: '2px solid white'}}>
                           <i className="fab fa-twitter"></i>
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="#" style={{border: '2px solid white'}}>
                           <i className="fab fa-instagram"></i>
                         </a>
                       </li>
