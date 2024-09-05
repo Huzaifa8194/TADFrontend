@@ -81,11 +81,15 @@ const HeaderOne = () => {
 
   return (
     <header
-  id="header"
-  style={{
-    background: "linear-gradient(179.43deg, #BF814B 13.06%, rgba(11, 29, 51, 0) 100.43%)",
-  }}
->
+      id="header"
+      style={{
+        background: "linear-gradient(179.43deg, rgba(0, 0, 0, 0) 50%, rgb(191,129, 75)  100.43%)",
+        position: "absolute", // Make the header overlay the content
+        width: "100%",
+        zIndex: 100, // Ensure it's above other content
+      }}
+    >
+  
       <div id="header-fixed-height" className={cn(stickyClass.fixed)} />
 
       <div id="sticky-header" className={cn("menu-area", stickyClass.header)}>
@@ -100,7 +104,7 @@ const HeaderOne = () => {
                 <nav className={"menu-nav"}>
                   <div className="logo">
                     <Link href={"/"}>
-                      <img src={"/img/logo/logo.png"} style={{ maxWidth: "150px" }} alt="TAD Logo" />
+                      <img src={"/img/logo/logo.png"} style={{ maxWidth: "180px", marginLeft: "20px" }} alt="TAD Logo" />
                     </Link>
                   </div>
 
@@ -194,7 +198,7 @@ const HeaderOne = () => {
                     <ul>
                      
                       <li className={"header-btn"}>
-                        <Link href="#" className="btn"  onClick={() => handleClickScroll("home")}>
+                        <Link href="#minting" className="btn" style={{border: '2px solid #BF814B'}} onClick={() => handleClickScroll("home")}>
                            Connect Wallet                        </Link>
                       </li>
                     </ul>

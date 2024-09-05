@@ -6,7 +6,11 @@
   justify-content: center;
   align-items: center;
   height: 75vh;
-  background: url("/img/bg/bg-color-1.png");
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.65),
+      rgba(0, 0, 0, 0.65)
+    ),
+    url("/img/bg/bg-color-1.png");
   background-size: cover;
   padding: 2rem;
   padding-top: 0px;
@@ -28,9 +32,9 @@
 
 /* Button styling */
 .button {
-  background-color: #BF814B;
+  background-color: white;
   border: none;
-  color: white;
+  color: black;
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   border-radius: 8px;
@@ -39,10 +43,37 @@
   margin: 0.5rem;
   font-weight: bold;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  border: 1px solid green;
+
+}
+
+
+.button2
+{
+  background-color: white;
+  border: none;
+  color: black;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  margin: 0.5rem;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 30px;
+  border: 1px solid red;
+}
+
+.button2:hover
+{
+  border: 3px solid red;
+  transform: translateY(-2px);
 }
 
 .button:hover {
-  background-color: black;
+  border: 3px solid green;
   transform: translateY(-2px);
 }
 
@@ -72,6 +103,7 @@
 .paragraph {
   color: white;
   margin: 0.5rem 0;
+  overflow-wrap: break-word;
 }
 
 /* Loading message styling */

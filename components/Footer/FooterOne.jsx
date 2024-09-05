@@ -29,7 +29,6 @@ const FooterOne = () => {
                   <div className="footer-content">
                     <p>The Architectures Dream Token!</p>
                     <ul className="footer-social">
-                      <li></li>
                       <li>
                         <a href="#">
                           <i className="fab fa-twitter"></i>
@@ -49,19 +48,30 @@ const FooterOne = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-xl-3 col-lg-5 col-sm-6">
-                <div
-                  className="footer-widget wow fadeInUp"
-                  data-wow-delay=".4s"
-                ></div>
+
+              {/* New Div with Important Links */}
+              <div className="col-xl-3 col-lg-6 col-md-6" style = {{marginTop: '60px'}}>
+                <div className="footer-widget wow fadeInUp" data-wow-delay=".4s">
+                  <h4 className="fw-title">Important Links</h4>
+                  <ul>
+                    <li>
+                      <Link href="/" style ={{marginBottom: '30px', color: 'white', fontSize:'1.3em', fontWeight: '100' }}>Home</Link>
+                    </li>
+                    <li>
+                      <Link style = {{color: 'white' , fontSize:'1.2em',  fontWeight: '100' }} href="/discord">Discord</Link>
+                    </li>
+                    <li>
+                      <Link style ={{color: 'white', fontSize:'1.2em',  fontWeight: '100' }} href="/whitepaper">Whitepaper</Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div className="col-xl-2 col-lg-3 col-sm-6">
-                <div
-                  className="footer-widget wow fadeInUp"
-                  data-wow-delay=".6s"
-                ></div>
+
+              <div className="col-xl-2 col-lg-3 col-sm-6" style = {{marginTop: '60px'}}>
+                <div className="footer-widget wow fadeInUp" data-wow-delay=".6s">
+                </div>
               </div>
-              <div className="col-xl-4 col-lg-4 col-md-6">
+              <div className="col-xl-4 col-lg-4 col-md-6" style = {{marginTop: '60px'}}>
                 <div className="footer-widget wow fadeInUp" data-wow-delay=".8s">
                   <h4 className="fw-title">Subscribe Newsletter</h4>
                   <div className="footer-newsletter">
@@ -96,13 +106,13 @@ const FooterOne = () => {
                 </div>
               </div>
               <div className="col-lg-6 d-none d-sm-block">
-                <div className="footer-menu">
+                <div className="footer-menu" style={{ color: "white" }}>
                   <ul>
-                    <li>
-                      <Link href="#">Terms and conditions</Link>
+                    <li style={{ color: "white" }}>
+                      <Link style={{ color: "white" }} href="#">Terms and conditions</Link>
                     </li>
-                    <li>
-                      <Link href="#">Privacy policy</Link>
+                    <li style={{ color: "white" }}>
+                      <Link style={{ color: "white" }} href="#">Privacy policy</Link>
                     </li>
                   </ul>
                 </div>

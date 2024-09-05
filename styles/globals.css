@@ -38,7 +38,7 @@ body {
   font-family: "Outfit", sans-serif;
   font-weight: normal;
   font-size: 16px;
-  color: #a4b4c3;
+  color: white;
   font-style: normal;
   background-color: #030b15;
   line-height: 1.75;
@@ -152,10 +152,10 @@ li {
   list-style: none;
 }
 p {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: normal;
   line-height: 1.75;
-  color: #727885;
+  color: white;
   margin-bottom: 15px;
 }
 hr {
@@ -610,7 +610,7 @@ label {
 }
 .menu-style-two .header-btn .btn {
   background: #BF814B;
-  border-radius: 5px;
+ 
 }
 .menu-style-two .header-btn .btn::after {
   display: none;
@@ -930,6 +930,12 @@ label {
   line-height: 1.4;
   letter-spacing: -0.01em;
 }
+
+
+.banner-content
+{
+  font-size: 1.3em;
+}
 .banner-content .title span {
   color: #BF814B;
 }
@@ -1039,7 +1045,7 @@ label {
   background: #0b1d33;
   border: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 5px;
-  color: #a4b4c3;
+  color: #000;
   text-transform: capitalize;
 }
 .banner-countdown-wrap .coming-time .time-count span {
@@ -1403,7 +1409,7 @@ label {
 .about-content p {
   margin-bottom: 40px;
   width: 73%;
-  color: #a4b4c3;
+  color: white;
 }
 .partner-wrap ul {
   display: flex;
@@ -1556,7 +1562,7 @@ label {
   margin-bottom: 0px;
   font-size: 15px;
   line-height: 22px;
-  color: #a4b4c3;
+  color: white0;
 }
 .choose-area .sr-only {
   position: absolute;
@@ -1699,7 +1705,7 @@ label {
   line-height: 1.2;
 }
 .chart-content-inner p {
-  color: #a4b4c3;
+  color: white0;
   margin-bottom: 45px;
 }
 .chart-content-inner .btn {
@@ -1909,7 +1915,7 @@ label {
 }
 .roadmap-content p {
   margin-bottom: 0;
-  color: #a4b4c3;
+  color: white0;
 }
 .roadmap-item:nth-child(even) {
   flex-direction: column-reverse;
@@ -2128,7 +2134,7 @@ label {
   background: linear-gradient(
     359.43deg,
     #592F16 11.06%,
-    rgba(11, 29, 51, 0) 99.43%
+    rgba(11, 29, 51, 0) 180.43%
   );
   /* background-blend-mode: color; */
 }
@@ -3164,25 +3170,22 @@ label {
   top: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    359.43deg,
-    #592F16 11.06%,
-    rgba(11, 29, 51, 0) 99.43%
-  );
+  background: linear-gradient(359.43deg, #29170d 11.06%, rgba(11, 29, 51, 0) 180.43%);
   z-index: -1;
 }
 .footer-scroll-wrap {
   position: relative;
   z-index: 1;
+  margin-top: 20px;
 }
 .footer-scroll-wrap .scroll-to-target {
-  width: 66px;
-  height: 66px;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #030b15;
-  border: 1px solid #1f262f;
+  border: 1px solid rgb(191 129 75);
   border-radius: 50%;
   font-size: 18px;
   padding: 0 0;
@@ -3205,7 +3208,7 @@ label {
   z-index: -1;
 }
 .footer-top {
-  padding: 55px 0 50px;
+  padding: 0px 0 0px;
 }
 .footer-widget {
   margin-bottom: 30px;
@@ -3218,7 +3221,7 @@ label {
   margin-bottom: 25px;
   font-size: 15px;
   line-height: 26px;
-  color: #a4b4c3;
+  color: white0;
   margin-left: 15%;
 }
 .footer-content .footer-social {
@@ -3261,7 +3264,7 @@ label {
 .footer-link ul li a {
   font-size: 15px;
   line-height: 20px;
-  color: #a4b4c3;
+  color: white0;
   position: relative;
 }
 .footer-link ul li a::before {
@@ -3301,10 +3304,11 @@ label {
   font-size: 15px;
   line-height: 26px;
   margin-bottom: 60px;
-  color: #a4b4c3;
+  color: white0;
 }
 .footer-newsletter form {
   position: relative;
+ 
 }
 .footer-newsletter form input {
   width: 100%;
@@ -3315,7 +3319,7 @@ label {
   font-size: 15px;
   padding: 23px 80px 23px 25px;
   color: #fff;
-  height: 72px;
+  height: 50px;
 }
 .footer-newsletter form input::placeholder {
   font-weight: 400;
@@ -3327,7 +3331,7 @@ label {
   right: 0;
   top: 0;
   width: 65px;
-  height: 72px;
+  height: 50px;
   background: #BF814B;
   border-radius: 10px;
   font-size: 20px;
@@ -3336,7 +3340,7 @@ label {
 }
 .footer-bottom {
   border-top: 1px solid rgb(255 255 255 / 6%);
-  padding: 27px 0;
+  padding: 16px 0;
 }
 .copyright-text p {
   color: #fff;
@@ -3354,7 +3358,7 @@ label {
 }
 .footer-menu ul li a {
   font-size: 15px;
-  color: #a4b4c3;
+  color: white0;
   font-weight: 500;
 }
 .footer-menu ul li a:hover {
@@ -3521,7 +3525,7 @@ label {
 }
 .roadmap-content span {
   display: block;
-  color: #a4b4c3;
+  color: white;
 }
 .bt-roadmap-item:nth-child(even) .roadmap-content {
   padding: 0 0 110px 17px;

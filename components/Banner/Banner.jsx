@@ -41,9 +41,9 @@ const Banner = () => {
               <h2 className="title">
                Mint TheArchitectsDream Token <span>TAD</span><br/> 1 USDC = 1 <span>TAD</span>
               </h2>
-              <p style = {{fontSize: '1.3em', paddingBottom: '30px', color: '#a4b4c3'}}>TAD is a membership benefit construction token. When you buy one we create one, you hold the token, when you sell one we burn one. There is a buy tax, no sales tax! Benefits per token for holding and pledging in real world projects helping you gain more benefits. Visit the shop or the plans and memberships areas, a percent of all sales go into the protocol to help members earn more benefits.</p>
+              <p style = {{fontSize: '1.3em', paddingBottom: '30px', color: '#ffffff'}}>TAD is a membership benefit construction token. When you buy one we create one, you hold the token, when you sell one we burn one. There is a buy tax, no sales tax! Benefits per token for holding and pledging in real world projects helping you gain more benefits. Visit the shop or the plans and memberships areas, a percent of all sales go into the protocol to help members earn more benefits.</p>
               
-              <p style = {{fontSize: '1.3em', paddingBottom: '30px' , color: '#a4b4c3'}}>By visiting the shop or exploring the plans and memberships sections, you can access a variety of benefits. A percentage of all sales is reinvested into the protocol, helping members earn even more rewards. The TAD token system is designed to maximize the value for its holders, providing ongoing opportunities for growth and engagement.</p>
+              <p style = {{fontSize: '1.3em', paddingBottom: '30px' , color: '#ffffff'}}>By visiting the shop or exploring the plans and memberships sections, you can access a variety of benefits. A percentage of all sales is reinvested into the protocol, helping members earn even more rewards. The TAD token system is designed to maximize the value for its holders, providing ongoing opportunities for growth and engagement.</p>
             
             </div>
            

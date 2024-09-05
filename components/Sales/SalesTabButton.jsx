@@ -13,6 +13,7 @@ const SalesTabButton = (props) => {
         role="tab"
         aria-controls={props.ariaControls}
         aria-selected={props.ariaSelected}
+        href = "#minting"
       >
         {props.title}
       </button>

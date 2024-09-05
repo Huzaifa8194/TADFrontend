@@ -226,18 +226,23 @@ export default function Home() {
         <main className="fix">
           <Banner />
 
-          <div className={styles.container} id="home">
+          <div className={styles.container} id ="minting">
       <div className={styles.appContent}>
        
         {!address ? (
-           <div>
-            <p style={{color: 'red'}}>Make sure Polygon is selected as your network.</p>
-           <button className={styles.button} onClick={() => connectWallet({ walletoption: "Metamask" })}>
-             Connect With Metamask
-           </button>
-           <button className={styles.button} onClick={() => connectWallet({ walletoption: "Walletconnect" })}>
-             Connect With WalletConnect
-           </button>
+           <div >
+            <img src ="\img\icon\polygon.png" alt="Polygon Logo" style={{ width: '60px', height: 'auto', margin: '0px' }} />
+            <p style={{color: 'red', textDecoration: 'underline', fontSize: '16px'}}>Make sure Polygon is selected as your network.</p>
+            <button className="btn" style={{ marginBottom: '5px', position: 'relative', width: '80%', textAlign: 'center' }} onClick={() => connectWallet({ walletoption: "Metamask" })}>
+  Connect With MetaMask
+  <img src="/img/icon/metamask.png" alt="MetaMask Logo" style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', width: '20px', height: '20px', marginRight: '30px'  }} />
+</button>
+
+<button className="btn" style={{ position: 'relative', width: '90%', textAlign: 'center' }} onClick={() => connectWallet({ walletoption: "Walletconnect" })}>
+  Connect With WalletConnect
+  <img src="/img/icon/walletconnect.png" alt="WalletConnect Logo" style={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', width: '30px', height: '30px', marginRight: '20px' }} />
+</button>
+
          </div>
         ) : (
           <div>
@@ -252,9 +257,9 @@ export default function Home() {
               onChange={(e) => setUsdcAmount(e.target.value)}
               placeholder="USDC Amount"
             />
-            <button className={styles.button} onClick={approveUSDC}>Approve USDC</button>
-            <button className={styles.button} onClick={() => validateAndProceed("mintTAD")}>Mint TAD</button>
-            <button className={styles.button} onClick={() => validateAndProceed("sellTAD")}>Sell TAD</button>
+            {/* <button className="btn" onClick={approveUSDC}>Approve USDC</button> */}
+            <button className="btn" onClick={() => validateAndProceed("mintTAD")}>Mint TAD</button>
+            <button className="btn" onClick={() => validateAndProceed("sellTAD")}>Sell TAD</button>
           </div>
         )}
         {isLoading && <p className={styles.loading}>TRANSACTION IN PROCESS...</p>}
@@ -299,13 +304,18 @@ export default function Home() {
             borderRadius: "8px",
             maxWidth: "500px",
             width: "90%",
+            color: 'black'
           },
         }}
+
+
       >
-        <h2>Confirm Transaction</h2>
-        <p>Are you sure you want to {modalAction} for {usdcAmount} USDC?</p>
-        <button className={styles.button} onClick={confirmTransaction}>Confirm</button>
-        <button className={styles.button} onClick={() => setModalIsOpen(false)}>Cancel</button>
+        <h2 style ={{color: 'black', textAlign: 'center'}}>Confirm Transaction</h2>
+        <p style ={{color: 'black'}}>Are you sure you want to {modalAction} for {usdcAmount} USDC?</p>
+        <div style ={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
+          <button className={styles.button} onClick={confirmTransaction}>Confirm</button>
+          <button className={styles.button2} style={{borderRadius: '30px', background: 'white', color: 'black'}} onClick={() => setModalIsOpen(false)}>Cancel</button>
+        </div>
       </Modal>
     </>
   );

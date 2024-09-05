@@ -11,9 +11,9 @@ const SalesTabContent = (props) => {
       aria-labelledby={props.ariaLabel}
     >
       <div className="chart-content-inner">
-        <h2 className="title">{props.title}</h2>
+        <h2 className="title" style ={{fontSize: '2.6em'}}>{props.title}</h2>
         <p>{props.description}</p>
-        <Link href={props.link} className="btn">
+        <Link href="#minting" className="btn">
           Buy Now
         </Link>
       </div>
