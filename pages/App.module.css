@@ -21,7 +21,7 @@
   background: #592F16;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  padding: 2.5rem;
   text-align: center;
   max-width: 500px;
   width: 100%;
@@ -110,4 +110,83 @@
 .loading {
   color: #ff5722;
   font-weight: bold;
+}
+
+
+/* Container styling for the logs and USDC used */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem; /* Space between the sidebar and the main content */
+  margin-top: 8px;
+}
+
+.sidebarItem {
+  background: #592F16;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 0.7rem;
+  color: white;
+  width: 200px; /* Adjust as needed */
+  max-width: 100%;
+  text-align: left;
+  overflow-y: auto; /* To handle overflow for logs */
+  margin-top: 3px;
+}
+
+.sidebarItem h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  
+}
+
+
+
+@media (max-width: 1000px) {
+
+  .container
+  {
+    flex-direction: column;
+   
+    overflow-y: auto;
+    height: 80%;
+  }
+
+  .container p 
+  {
+    font-size: 0.8em;
+  }
+  .sidebarItem p
+  {
+    font-size: 0.7em;
+  }
+
+  .sidebarItem h4 
+  {
+    font-size: 0.9em;
+  }
+
+  .sidebar
+  {
+    max-width: 80%;
+    flex-direction: row !important;
+    gap: 5%;
+    margin-top: 10%;
+  }
+ 
+}
+
+@media (max-width: 600px) {
+  .container
+  {
+    flex-direction: column;
+  }
+
+  .sidebar
+  {
+    flex-direction: row !important;
+  }
+  
 }

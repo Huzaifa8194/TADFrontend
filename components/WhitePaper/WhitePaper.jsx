@@ -34,7 +34,7 @@ const WhitePaper = () => {
                 
               </ul>
 
-              <Link href="https://www.thearchitectsdream.com/public/resource/token/white_paper/token_white_paper.pdf" className="btn">
+              <Link href="https://www.thearchitectsdream.com/public/resource/token/white_paper/token_white_paper.pdf" target="_blank" className="btn">
                 Download Doc
               </Link>
             </div>

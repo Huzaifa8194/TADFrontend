@@ -61,7 +61,7 @@ const FooterOne = () => {
                       <Link style = {{color: 'white' , fontSize:'1.2em',  fontWeight: '100' }} href="/discord">Discord</Link>
                     </li>
                     <li>
-                      <Link style ={{color: 'white', fontSize:'1.2em',  fontWeight: '100' }} href="/whitepaper">Whitepaper</Link>
+                      <Link style ={{color: 'white', fontSize:'1.2em',  fontWeight: '100' }} href="https://www.thearchitectsdream.com/public/resource/token/white_paper/token_white_paper.pdf" target="_blank">Whitepaper</Link>
                     </li>
                   </ul>
                 </div>

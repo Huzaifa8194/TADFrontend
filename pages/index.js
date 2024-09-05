@@ -3,7 +3,7 @@ import Banner from "@/components/Banner/Banner";
 import Sales from "@/components/Sales/Sales";
 import WhitePaper from "@/components/WhitePaper/WhitePaper";
 import LayoutOne from "@/layouts/LayoutOne";
-import { useState, useEffect } from "react";
+import { useState, useEffect  } from "react";
 import { ethers } from "ethers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -40,11 +40,16 @@ export default function Home() {
   const [modalAction, setModalAction] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const [usdcUsed, setUsdcUsed] = useState(0); // Track total USDC used
+  const [logs, setLogs] = useState([]); // Logs for transactions
+
   const network = useNetwork();
   const connectMetamask = useMetamask();
   const connectWalletConnect = useWalletConnect();
   const address = useAddress();
   const signer = useSigner();
+
+ 
 
   useEffect(() => {
     if (address) {
@@ -153,7 +158,13 @@ export default function Home() {
          
           await tx.wait();
           toast.success("TAD minted successfully!");
+
+
+          setUsdcUsed((prev) => prev + parseFloat(usdcAmount));
+          setLogs((prevLogs) => [...prevLogs, `${usdcAmount} USDC used to mint TAD`]);
+
           updateBalances();
+
         } else {
           toast.error("Insufficient USDC balance!");
         }
@@ -211,8 +222,6 @@ export default function Home() {
   };
 
 
-               
-
 
 
   return  (
@@ -227,6 +236,33 @@ export default function Home() {
           <Banner />
 
           <div className={styles.container} id ="minting">
+
+
+
+
+              {!address ? (<></>
+              
+              
+              )
+            :
+              ( <div className={styles.sidebar}>
+                <div className={styles.sidebarItem}>
+                <h4>USDC Balance</h4>
+                <p>{usdcBalance} USDC</p>
+                  <h4>USDC Used</h4>
+                  <p>{usdcUsed} USDC</p>
+                </div>
+                <div className={styles.sidebarItem}>
+                  <h4>TAD Balance:</h4>
+                  <p>{tadBalance} TAD</p>
+                </div>
+              </div>)
+            
+            }
+           
+       
+
+
       <div className={styles.appContent}>
        
         {!address ? (
@@ -245,10 +281,13 @@ export default function Home() {
 
          </div>
         ) : (
+
+
+          
           <div>
             <p className={styles.paragraph}>Connected Address: {address}</p>
-            <p className={styles.paragraph}>USDC Balance: {usdcBalance}</p>
-            <p className={styles.paragraph}>TAD Balance: {tadBalance}</p>
+            {/* <p className={styles.paragraph}>USDC Balance: {usdcBalance}</p>
+            <p className={styles.paragraph}>TAD Balance: {tadBalance}</p> */}
           
             <input
               className={styles.input}

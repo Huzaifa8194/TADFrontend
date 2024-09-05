@@ -3176,7 +3176,7 @@ label {
 .footer-scroll-wrap {
   position: relative;
   z-index: 1;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 .footer-scroll-wrap .scroll-to-target {
   width: 50px;
