@@ -16,8 +16,8 @@ import {
   useSigner,
 } from "@thirdweb-dev/react";
 
-const TADContractAddress = "0x895BCcff8Ab6eb9Cc582d622E314628fFC89EdF9";
-const USDCContractAddress = "0x41E94Eb019C0762f9Bfcf9Fb1E58725BfB0e7582";
+const TADContractAddress = "0xe5f744F7CD4f21BE0Ce625CCE55479361C5a2380";
+const USDCContractAddress = "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359";
 
 import styles from "./App.module.css";
 
@@ -146,12 +146,14 @@ export default function Home() {
 
   const mintTAD = async () => {
     if (TADContract && USDCContract) {
-      setIsLoading(true);
+      
       try {
         const approvalSuccess = await approveUSDC();
+        setIsLoading(true);
 
         if (!approvalSuccess) {
           toast.error("USDC approval failed, cannot proceed with minting.");
+          
           return;
         }
 
@@ -163,7 +165,7 @@ export default function Home() {
           // Use gte to compare BigNumber values
 
           const tx = await TADContract.mint(amount);
-          toast.success("THIS PART HAS BEEN DONE");
+        
 
           await tx.wait();
           toast.success("TAD minted successfully!");

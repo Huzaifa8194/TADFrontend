@@ -9,11 +9,11 @@ import dynamic from "next/dynamic";
 import { useEffect } from "react";
 
 import { ThirdwebProvider, WalletConnect } from "@thirdweb-dev/react";
-import { PolygonAmoyTestnet } from "@thirdweb-dev/chains";
+import { Polygon } from "@thirdweb-dev/chains";
 
 
 
-const activeChain = PolygonAmoyTestnet; 
+const activeChain = Polygon; 
 
 const bootstrapJs = dynamic(import("bootstrap/dist/js/bootstrap.bundle.min"), {
   ssr: false,
